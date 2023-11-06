@@ -35,11 +35,14 @@ CREATE TABLE IF NOT EXISTS Movies.MovieTvShowFact (
     description STRING,
     genre_id STRING,
     director_id STRING,
+    "cast" STRING,
     rating_id STRING,
     country_id STRING,
+    LISTED_IN STRING,
     FOREIGN KEY (genre_id) REFERENCES Movies.Genre (genre_id),
     FOREIGN KEY (director_id) REFERENCES Movies.Director (director_id),
     FOREIGN KEY (rating_id) REFERENCES Movies.TvRating (rating_id),
-    FOREIGN KEY (country_id) REFERENCES Movies.Country (country_id)
+    FOREIGN KEY (country_id) REFERENCES Movies.Country (country_id),
+    FOREIGN KEY ("cast") REFERENCES Movies.Actor (actor_id)
 )
-CLUSTER BY (genre_id);
+CLUSTER BY (type, "cast");
